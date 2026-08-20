@@ -212,3 +212,33 @@
   background-size: 48px 48px;
 }
 
+
+@utility brutal-border {
+  border: 2px solid var(--ink);
+}
+
+@utility brutal-shadow {
+  box-shadow: 6px 6px 0 0 var(--ink);
+}
+
+@utility brutal-shadow-sm {
+  box-shadow: 3px 3px 0 0 var(--ink);
+}
+
+@utility brutal-press {
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease;
+  &:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 0 var(--ink);
+  }
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 0 var(--ink);
+  }
+  &:focus-visible {
+    outline: 3px solid var(--electric);
+    outline-offset: 3px;
+  }
+}
