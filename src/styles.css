@@ -110,13 +110,13 @@
   --chart-3: var(--signal-green);
   --chart-4: var(--signal-orange);
   --chart-5: var(--signal-yellow);
-  --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0 0 0);
+  --sidebar: oklch(0 0 0);
+  --sidebar-foreground: oklch(1 0 0);
   --sidebar-primary: var(--electric);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.96 0 0);
-  --sidebar-accent-foreground: oklch(0 0 0);
-  --sidebar-border: oklch(0.9 0 0);
+  --sidebar-accent: oklch(0.22 0 0);
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border: oklch(1 0 0 / 14%);
   --sidebar-ring: var(--electric);
 }
 
@@ -212,3 +212,33 @@
   background-size: 48px 48px;
 }
 
+
+@utility brutal-border {
+  border: 2px solid var(--ink);
+}
+
+@utility brutal-shadow {
+  box-shadow: 6px 6px 0 0 var(--ink);
+}
+
+@utility brutal-shadow-sm {
+  box-shadow: 3px 3px 0 0 var(--ink);
+}
+
+@utility brutal-press {
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease;
+  &:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 0 var(--ink);
+  }
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 0 var(--ink);
+  }
+  &:focus-visible {
+    outline: 3px solid var(--electric);
+    outline-offset: 3px;
+  }
+}
