@@ -25,17 +25,17 @@ export function PixelCard({
   className,
 }: PixelCardProps) {
   return (
-    <section className={cn("pixel-border pixel-shadow bg-card rounded-xs", className)}>
+    <section className={cn("surface-card rounded-lg", className)}>
       {title ? (
-        <header className="border-ink grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b-2 px-4 py-3">
-          <div className="flex min-w-0 items-center gap-2">
-            <span className={cn("h-3 w-3 shrink-0 border-2 border-ink", accentBar[accent])} />
-            <h2 className="truncate text-sm font-bold tracking-widest uppercase">{title}</h2>
+        <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-5 pt-5">
+          <div className="flex min-w-0 items-center gap-2.5">
+            <span className={cn("h-2.5 w-2.5 shrink-0 rounded-xs", accentBar[accent])} />
+            <h2 className="truncate text-sm font-bold tracking-wide">{title}</h2>
           </div>
           {action ? <div className="shrink-0">{action}</div> : null}
         </header>
       ) : null}
-      <div className="p-4 sm:p-5">{children}</div>
+      <div className="px-5 pb-5 pt-4">{children}</div>
     </section>
   );
 }

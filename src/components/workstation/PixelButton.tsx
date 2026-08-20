@@ -4,9 +4,9 @@ import { cn } from "@/lib/utils";
 type Variant = "primary" | "ghost" | "yellow";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-electric text-electric-foreground",
-  ghost: "bg-paper text-foreground",
-  yellow: "bg-signal-yellow text-foreground",
+  primary: "bg-electric text-electric-foreground pixel-shadow hover:brightness-110",
+  ghost: "bg-card text-foreground border border-border hover:bg-muted",
+  yellow: "bg-card text-foreground border border-border hover:border-electric hover:text-electric",
 };
 
 export function PixelButton({
@@ -18,7 +18,7 @@ export function PixelButton({
     <button
       type="button"
       className={cn(
-        "pixel-border pixel-shadow pixel-press inline-flex items-center justify-center gap-2 rounded-xs px-4 py-2 text-xs font-bold tracking-widest uppercase",
+        "pixel-press inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-xs font-bold tracking-wide",
         variants[variant],
         className,
       )}

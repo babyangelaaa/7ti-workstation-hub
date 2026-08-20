@@ -8,9 +8,9 @@ type ProgressBlocksProps = {
 
 export function ProgressBlocks({ total, completed, className }: ProgressBlocksProps) {
   return (
-    <div className={cn("space-y-2", className)}>
+    <div className={cn("space-y-2.5", className)}>
       <div
-        className="pixel-border grid grid-cols-10 gap-[3px] rounded-xs bg-muted p-[3px] sm:grid-cols-20"
+        className="grid grid-cols-20 gap-[3px]"
         role="img"
         aria-label={`${completed} of ${total} lessons complete`}
       >
@@ -19,14 +19,14 @@ export function ProgressBlocks({ total, completed, className }: ProgressBlocksPr
             key={i}
             aria-hidden
             className={cn(
-              "border-ink h-3 w-full border",
-              i < completed ? "bg-electric" : "bg-paper",
+              "h-2.5 w-full rounded-[1px]",
+              i < completed ? "bg-electric" : "bg-muted",
             )}
           />
         ))}
       </div>
 
-      <p className="text-[11px] font-bold tracking-widest uppercase text-muted-foreground">
+      <p className="text-[11px] tracking-wide text-muted-foreground">
         {completed}/{total} blocks cleared
       </p>
     </div>

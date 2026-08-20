@@ -14,7 +14,7 @@ export function DashboardWidget({ title, accent = "electric", caption, children 
       <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground">
         {caption}
       </p>
-      <div className="mt-3">{children}</div>
+      <div className="mt-4">{children}</div>
     </PixelCard>
   );
 }

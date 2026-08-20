@@ -40,8 +40,8 @@ function Workstation() {
   return (
     <div className="pixel-grid-bg min-h-screen bg-background">
       <div className="flex min-h-screen">
-        <aside className="hidden w-72 shrink-0 lg:block">
-          <div className="fixed inset-y-0 left-0 w-72">
+        <aside className="hidden w-64 shrink-0 lg:block">
+          <div className="fixed inset-y-0 left-0 w-64">
             <Sidebar active={active} onSelect={select} />
           </div>
         </aside>
@@ -52,9 +52,9 @@ function Workstation() {
               type="button"
               aria-label="Close navigation overlay"
               onClick={() => setOpen(false)}
-              className="absolute inset-0 bg-ink/60"
+              className="absolute inset-0 bg-ink/40"
             />
-            <div className="absolute inset-y-0 left-0 w-72 max-w-[85vw]">
+            <div className="absolute inset-y-0 left-0 w-64 max-w-[85vw]">
               <Sidebar active={active} onSelect={select} onClose={() => setOpen(false)} />
             </div>
           </div>
@@ -63,32 +63,33 @@ function Workstation() {
         <div className="flex min-w-0 flex-1 flex-col">
           <TopBar onMenu={() => setOpen(true)} />
 
-          <main className="min-w-0 flex-1 p-4 sm:p-6 lg:p-8">
+          <main className="min-w-0 flex-1 p-5 sm:p-8 lg:p-12">
             <div className="mx-auto max-w-6xl">
-              <p className="text-xs font-bold tracking-[0.3em] uppercase text-muted-foreground">
+              <p className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
                 Hi, Test 1
               </p>
-              <h1 className="mt-2 text-2xl leading-tight font-bold tracking-tight sm:text-4xl">
-                Welcome to 7TI Workstation
-              </h1>
-              <span className="pixel-border pixel-shadow-sm mt-4 inline-block rounded-xs bg-signal-yellow px-3 py-1 text-[10px] font-bold tracking-[0.2em] uppercase">
-                Empowering Lives Digitally
-              </span>
+              <div className="mt-3 flex flex-wrap items-center gap-4">
+                <h1 className="text-2xl leading-tight font-bold tracking-tight sm:text-3xl">
+                  Welcome to 7TI Workstation
+                </h1>
+                <span className="inline-flex items-center gap-2 rounded-md border border-border px-2.5 py-1 text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
+                  <span aria-hidden className="h-1.5 w-1.5 rounded-[1px] bg-signal-yellow" />
+                  Empowering Lives Digitally
+                </span>
+              </div>
 
-              <div className="pixel-checker mt-6 h-2 w-full opacity-25" aria-hidden />
-
-              <div className="mt-6 grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+              <div className="mt-10 grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
                 <CourseProgress />
                 <SharedFiles />
               </div>
 
-              <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+              <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
                 <NextMission />
                 <GrowthTracker />
                 <CommunitySignal />
               </div>
 
-              <footer className="border-ink mt-8 border-t-2 pt-4 text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground">
+              <footer className="mt-12 border-t border-border pt-5 text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
                 7TI © Unlock Your Potential — {active} module
               </footer>
             </div>
@@ -96,5 +97,6 @@ function Workstation() {
         </div>
       </div>
     </div>
+
   );
 }

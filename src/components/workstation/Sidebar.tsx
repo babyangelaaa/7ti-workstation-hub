@@ -9,6 +9,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/7ti-logo.png.asset.json";
 
 export const navItems: { label: string; icon: LucideIcon }[] = [
   { label: "Home", icon: Home },
@@ -18,39 +19,6 @@ export const navItems: { label: string; icon: LucideIcon }[] = [
   { label: "Shared Files", icon: FolderClosed },
   { label: "Manage Subscriptions", icon: Receipt },
 ];
-
-function PixelArrow({ active }: { active: boolean }) {
-  return (
-    <span
-      aria-hidden
-      className={cn(
-        "shrink-0 font-bold tracking-tighter",
-        active ? "text-electric-foreground" : "text-muted-foreground",
-      )}
-    >
-      &gt;&gt;
-    </span>
-  );
-}
-
-function PixelLogo() {
-  const cells = [
-    1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0,
-  ];
-  return (
-    <div className="pixel-border pixel-shadow grid h-16 w-16 shrink-0 grid-cols-5 gap-[2px] rounded-xs bg-ink p-[3px]">
-      {cells.map((c, i) => (
-        <span
-          key={i}
-          className={cn(
-            "block aspect-square",
-            c ? "bg-signal-yellow" : i % 7 === 0 ? "bg-signal-magenta" : "bg-electric",
-          )}
-        />
-      ))}
-    </div>
-  );
-}
 
 type SidebarProps = {
   active: string;
@@ -62,14 +30,17 @@ export function Sidebar({ active, onSelect, onClose }: SidebarProps) {
   return (
     <nav
       aria-label="Workstation navigation"
-      className="border-ink flex h-full flex-col border-r-2 bg-sidebar"
+      className="flex h-full flex-col border-r border-border bg-sidebar"
     >
-      <div className="border-ink grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 border-b-2 p-4">
-        <PixelLogo />
+      <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-5 py-6">
+        <img
+          src={logo.url}
+          alt="7TI logo"
+          className="h-9 w-9 shrink-0 rounded-xs object-contain"
+        />
         <div className="min-w-0">
-          <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-electric">7TI</p>
-          <h1 className="truncate text-lg font-bold tracking-tight">7TI Workstation</h1>
-          <p className="truncate text-[10px] tracking-widest uppercase text-muted-foreground">
+          <h1 className="truncate text-base font-bold tracking-tight">7TI Workstation</h1>
+          <p className="truncate text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
             Unlock Your Potential
           </p>
         </div>
@@ -78,14 +49,14 @@ export function Sidebar({ active, onSelect, onClose }: SidebarProps) {
             type="button"
             onClick={onClose}
             aria-label="Close navigation"
-            className="pixel-border pixel-shadow-sm pixel-press rounded-xs bg-paper p-1 lg:hidden"
+            className="pixel-press rounded-md p-1 text-muted-foreground hover:bg-muted lg:hidden"
           >
             <X className="h-4 w-4" />
           </button>
         ) : null}
       </div>
 
-      <ul className="flex-1 space-y-2 overflow-y-auto p-3">
+      <ul className="flex-1 space-y-1 overflow-y-auto px-3">
         {navItems.map((item) => {
           const isActive = item.label === active;
           return (
@@ -95,29 +66,36 @@ export function Sidebar({ active, onSelect, onClose }: SidebarProps) {
                 onClick={() => onSelect(item.label)}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "pixel-border pixel-press grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-xs px-3 py-2.5 text-left text-xs font-bold tracking-widest uppercase",
+                  "pixel-press relative grid w-full grid-cols-[auto_minmax(0,1fr)] items-center gap-3 rounded-md px-3 py-2.5 text-left text-xs tracking-wide",
                   isActive
-                    ? "pixel-shadow bg-electric text-electric-foreground"
-                    : "pixel-shadow-sm bg-paper text-foreground hover:bg-muted",
+                    ? "bg-electric/8 font-bold text-electric"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground",
                 )}
               >
-                <item.icon className="h-4 w-4 shrink-0" strokeWidth={2.5} />
+                {isActive ? (
+                  <span
+                    aria-hidden
+                    className="absolute top-1/2 left-0 h-4 w-[3px] -translate-y-1/2 rounded-[1px] bg-electric"
+                  />
+                ) : null}
+                <item.icon className="h-4 w-4 shrink-0" strokeWidth={2} />
                 <span className="truncate">{item.label}</span>
-                <PixelArrow active={isActive} />
               </button>
             </li>
           );
         })}
       </ul>
 
-      <div className="border-ink border-t-2 p-3">
-        <div className="pixel-border rounded-xs bg-signal-green p-3">
-          <p className="text-[10px] font-bold tracking-[0.2em] uppercase">Fast-Track</p>
-          <p className="mt-1 text-[11px] leading-snug">
+      <div className="p-4">
+        <div className="rounded-lg border border-border p-4">
+          <div className="flex items-center gap-2">
+            <span aria-hidden className="h-1.5 w-1.5 rounded-[1px] bg-signal-green" />
+            <p className="text-[10px] font-bold tracking-[0.2em] uppercase">Fast-Track</p>
+          </div>
+          <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">
             Build a Future-Proof Career — 3 missions left this week.
           </p>
         </div>
-        <div className="pixel-checker mt-3 h-2 w-full opacity-30" aria-hidden />
       </div>
     </nav>
   );
