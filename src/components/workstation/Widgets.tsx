@@ -28,7 +28,7 @@ export function NextMission() {
 
   return (
     <DashboardWidget title="Next Mission" accent="orange" caption="Fast-Track Your Growth">
-      <ul className="space-y-2">
+      <ul className="space-y-1">
         {missions.map((m, i) => {
           const checked = done.includes(i);
           return (
@@ -37,17 +37,24 @@ export function NextMission() {
                 type="button"
                 onClick={() => toggle(i)}
                 aria-pressed={checked}
-                className="pixel-border pixel-shadow-sm pixel-press grid w-full grid-cols-[auto_minmax(0,1fr)] items-center gap-3 rounded-xs bg-paper px-3 py-2 text-left"
+                className="pixel-press grid w-full grid-cols-[auto_minmax(0,1fr)] items-center gap-3 rounded-md px-2 py-2 text-left hover:bg-muted"
               >
                 <span
                   className={cn(
-                    "border-ink grid h-5 w-5 shrink-0 place-items-center border-2",
-                    checked ? "bg-signal-green" : "bg-paper",
+                    "grid h-4 w-4 shrink-0 place-items-center rounded-xs border",
+                    checked
+                      ? "border-transparent bg-signal-green"
+                      : "border-border bg-transparent",
                   )}
                 >
-                  {checked ? <Check className="h-3.5 w-3.5" strokeWidth={4} /> : null}
+                  {checked ? <Check className="h-3 w-3" strokeWidth={3.5} /> : null}
                 </span>
-                <span className={cn("min-w-0 text-xs leading-snug", checked && "line-through")}>
+                <span
+                  className={cn(
+                    "min-w-0 text-xs leading-snug",
+                    checked && "text-muted-foreground line-through",
+                  )}
+                >
                   {m}
                 </span>
               </button>
@@ -62,20 +69,20 @@ export function NextMission() {
 export function GrowthTracker() {
   return (
     <DashboardWidget title="Growth Tracker" accent="green" caption="Build a Future-Proof Career">
-      <ul className="space-y-3">
+      <ul className="space-y-4">
         {stats.map((s) => (
           <li key={s.label}>
-            <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-2 text-[11px] font-bold tracking-widest uppercase">
-              <span className="truncate">{s.label}</span>
-              <span className="shrink-0">{s.value}%</span>
+            <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-2 text-[11px] tracking-wide">
+              <span className="truncate text-muted-foreground">{s.label}</span>
+              <span className="shrink-0 font-bold">{s.value}%</span>
             </div>
-            <div className="pixel-border mt-1 flex gap-[2px] rounded-xs bg-muted p-[2px]">
+            <div className="mt-2 flex gap-[3px]">
               {Array.from({ length: 20 }).map((_, i) => (
                 <span
                   key={i}
                   className={cn(
-                    "border-ink h-2.5 w-[calc((100%-19*2px)/20)] border",
-                    i < Math.round(s.value / 5) ? s.color : "bg-paper",
+                    "h-2 flex-1 rounded-[1px]",
+                    i < Math.round(s.value / 5) ? s.color : "bg-muted",
                   )}
                 />
               ))}
@@ -83,8 +90,8 @@ export function GrowthTracker() {
           </li>
         ))}
       </ul>
-      <p className="mt-4 flex items-center gap-2 text-[11px] font-bold tracking-widest uppercase text-muted-foreground">
-        <TrendingUp className="h-3.5 w-3.5 shrink-0" strokeWidth={3} />
+      <p className="mt-5 flex items-center gap-2 text-[11px] tracking-wide text-muted-foreground">
+        <TrendingUp className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
         +8% vs last week
       </p>
     </DashboardWidget>
@@ -94,26 +101,23 @@ export function GrowthTracker() {
 export function CommunitySignal() {
   return (
     <DashboardWidget title="Community Signal" accent="magenta" caption="Empowering Lives Digitally">
-      <ul className="space-y-2">
+      <ul className="space-y-3">
         {signals.map((s) => (
-          <li
-            key={s.tag}
-            className="pixel-border grid grid-cols-[auto_minmax(0,1fr)] items-start gap-3 rounded-xs bg-paper px-3 py-2"
-          >
+          <li key={s.tag} className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-3">
             <span
               className={cn(
-                "border-ink shrink-0 border-2 px-1.5 py-0.5 text-[9px] font-bold tracking-widest",
+                "mt-[1px] shrink-0 rounded-xs px-1.5 py-0.5 text-[9px] font-bold tracking-widest",
                 s.color,
               )}
             >
               {s.tag}
             </span>
-            <span className="min-w-0 text-xs leading-snug">{s.text}</span>
+            <span className="min-w-0 text-xs leading-relaxed">{s.text}</span>
           </li>
         ))}
       </ul>
-      <p className="mt-4 flex items-center gap-2 text-[11px] font-bold tracking-widest uppercase text-muted-foreground">
-        <Radio className="h-3.5 w-3.5 shrink-0" strokeWidth={3} />
+      <p className="mt-5 flex items-center gap-2 text-[11px] tracking-wide text-muted-foreground">
+        <Radio className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
         142 members online
       </p>
     </DashboardWidget>
